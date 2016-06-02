@@ -1,0 +1,4 @@
+<?php
+exit();
+2016-05-29 23:05:29---Error:Call to undefined function LibMysql()--File:D:\Project\PHP\poker\godking\init.php--Line:34 
+ 

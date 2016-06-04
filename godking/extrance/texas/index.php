@@ -16,11 +16,13 @@ define('IN_GAME', 'TRUE');
 require_once 'common.php';
 
 
-$ret = Model_Cache::redisMinfo(0)->set('b', 'b');
+$ret = Model_Cache::redisMinfo(0)->get('b');
 $table = Model_Table::mclient();
-$query = "INSERT INTO {$table} ";
-$flag = Model_Db::dbMain()->query($query);
-$dump = compact('ret', 'table', 'quert', 'flag');
+// $query = "INSERT INTO {$table} SET client='aa'";
+// $flag = Model_Db::dbMain()->query($query);
+// $flag2 = Model_Db::dbMain()->insertData($table, array('client'=>'bb'), true);
+$flag3 = Model_Db::dbMain()->updateData($table, array('client'=>'update to new'), array('mid>1'));
+$dump = compact('ret', 'table', 'quert', 'flag', 'flag3');
 Common_Log::dump($dump);
 
 

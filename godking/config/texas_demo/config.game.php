@@ -13,13 +13,14 @@
  */
  defined( 'IN_GAME') or die( 'Comes Error!');
  define('HTTP', 'http://');
+ define('SERVER_ONLINE', false);
  
  $gConfig = array();
  $gConfig['gid'] = 1;	// 游戏ID
  
  /************************   数据库配置 array(数据库地址, 用户名, 密码, 数据库名)    ************************/
- $gConfig['dbMain'] = array('127.0.0.1:3306','root', '', 'texas');	// 主数据库
- $gConfig['dbBk'] =array('127.0.0.1:3306','root', '', 'texas');	// 配置数据库
+ $gConfig['dbMain'] = array('127.0.0.1:3306','root', '', 'texas_member');	// 主数据库
+ $gConfig['dbBk'] =array('127.0.0.1:3306','root', '', 'texas_bk');	// 配置数据库
 
  /************************   Redis配置    ************************/
  $gConfig['redisMinfo'] = array('127.0.0.1', '6379');	// 用户Redis

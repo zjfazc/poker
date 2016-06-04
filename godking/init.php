@@ -23,18 +23,21 @@ define('PATH_LIB', PATH_ROOT . 'lib' . DS);
 define('PATH_MODEL', PATH_ROOT . 'model' . DS);
 define('PATH_COMMON', PATH_ROOT . 'common' . DS);
 define('PATH_LOG', PATH_ROOT . 'log' . DS);
+define('PATH_VIEW', PATH_ROOT . 'view' . DS);
+define('PATH_GADMIN', PATH_ROOT . 'gadmin' . DS);
 
 define('NOW', time());
 define('TODAY', mktime(0,0,0));
+define('SCRIPT_STIME', microtime(true));
 
 ///////////////////////////  初始化：加载配置; 验证登录参数  ///////////////////////////////
 include_once PATH_LIB . 'lib.setup.php';
 Lib_Setup::init();
 // include_once PATH_LIB . 'lib.phperror.php';
 Common_Gobal::initCommonConfig();
-$gChannelid = isset($_REQUEST['cid']) ? Common_Function::uint($_REQUEST['cid']) : 0;	// 渠道id
-$gGameid = isset($_REQUEST['gid']) ? Common_Function::uint($_REQUEST['gid']) : 0;	// 游戏类型id
-$gLoginid = isset($_REQUEST['lid']) ? Common_Function::uint($_REQUEST['lid']) : 0;	// 登录类型id
+$gChannelid = isset($_REQUEST['cid']) ? Common_Function::single()->uint($_REQUEST['cid']) : 0;	// 渠道id
+$gGameid = isset($_REQUEST['gid']) ? Common_Function::single()->uint($_REQUEST['gid']) : 0;	// 游戏类型id
+$gLoginid = isset($_REQUEST['lid']) ? Common_Function::single()->uint($_REQUEST['lid']) : 0;	// 登录类型id
 ///////////  验证   ////////////
 if(empty($gGameid) && !array_key_exists($gGameid, Common_Gobal::$_gCommonConfig['gids'])){
 	die("wrong gameid! gameid: ".$gameid);
@@ -58,6 +61,8 @@ Common_Gobal::initGameConfig();	// 加载游戏对应配置
 Common_Gobal::header();
 Common_Gobal::nocache();
 
-// Common_Log::dump(PATH_CONFIG);
-// Common_Log::dump(Common_Gobal::$_gCommonConfig);
-// Common_Log::dump(Common_Gobal::$_gGameConfig);
+Common_Function::single()->magic_quote($_GET);
+Common_Function::single()->magic_quote($_POST);
+Common_Function::single()->magic_quote($_REQUEST);
+
+Common_Log::dump(Common_Errorcode::SUCCEED);

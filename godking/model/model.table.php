@@ -32,7 +32,7 @@
  	}
  	
  	static public function mclient(){
- 		return "texas.mclient";
+ 		return "texas_member.mclient";
  	}
  	/**
  	 * 用户信息表
@@ -41,7 +41,7 @@
  	 */
  	static public function minfo($mid){
  		$idx = $mid % 10;
- 		return "texas.minfo{$mid}";
+ 		return "texas_member.minfo{$mid}";
  	}
  	
  	

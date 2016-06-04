@@ -34,7 +34,6 @@ class Lib_Mysql {
 		$this->user = $servers [1];
 		$this->password = $servers [2];
 		$this->dbname = $servers [3];
-		Common_Log::dump($this);
 	}
 	/**
 	 * 检查并连接数据库
@@ -51,7 +50,7 @@ class Lib_Mysql {
 		
 		$conn = mysqli_init ();
 		mysqli_options ( $conn, MYSQLI_OPT_LOCAL_INFILE, true );
-		mysqli_real_connect ( $conn, $this->host, $this->user, $this->password, $this->dbname, $this->port , $this->user, 0 );
+		mysqli_real_connect ( $conn, $this->host, $this->user, $this->password, $this->dbname, $this->port , null, 0 );
 		
 		self::$mysqli = $conn;
 		$error = mysqli_connect_error ();
@@ -155,4 +154,64 @@ class Lib_Mysql {
 // 		oo::funModel ( 'logs' )->debug ( $error, 'mysql.txt' );
 		die ( 'DB Invalid!!!' );
 	}
+	
+	/**************************   数据库特殊处理   ****************************/
+	/**
+	 * 基础插入数据
+	 * @param unknown $table
+	 * @param unknown $data 数据格式，记得处理
+	 * @param string $returnId  是否返回自增插入数据id
+	 * @return boolean|unknown
+	 */
+	public function insertData($table, $data, $returnId=false){
+		if(empty($table) || empty($data)){
+			return false;
+		}
+		$setField = array();
+		foreach($data as $key=>$val){
+			if(is_string($val)){
+				$setField[] = "`{$key}`='".$this->escape($val)."'";
+			}else {
+				$setField[] = "`{$key}`='{$val}'";
+			}
+		}
+		$query = "INSERT INTO {$table} SET ". implode(',', $setField);
+		$flag = $this->query($query);
+		if($flag && $returnId){
+			$flag = $this->insertID();
+		}
+		return $flag;
+	}
+	
+	/**
+	 *  基础更新数据
+	 * @param unknown $table 数据表
+	 * @param unknown $data 修改字段数组值
+	 * @param unknown $where  条件数组
+	 * @param number $limit 数量
+	 * @return boolean|unknown
+	 */
+	public function updateData($table, $data, $where, $limit=0){
+		if(empty($table) || empty($data) || empty($where)){
+			return false;
+		}
+		
+		$setField = array();
+		foreach($data as $key=>$val){
+			if(is_string($val)){
+				$setField[] = "`{$key}`='".$this->escape($val)."'";
+			}else {
+				$setField[] = "`{$key}`='{$val}'";
+			}
+		}
+		
+		$limitField = $limit ? " LIMIT {$limit} " : "";
+		$query = "UPDATE {$table} SET ". implode(',', $setField)
+						. " WHERE " .  implode(' AND ', $where)
+						. $limitField;
+		$this->query($query);
+		$flag = $this->affectedRows();
+		return $flag;
+	}
+	
 }	// END CLASS

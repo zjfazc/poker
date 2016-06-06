@@ -214,4 +214,32 @@ class Lib_Mysql {
 		return $flag;
 	}
 	
+	/**
+	 * 基础查询数据操作
+	 * @param unknown $table
+	 * @param string $all 是否全部， getAll  or  getOne
+	 * @param unknown $select  array('*', 'field1', 'field2')
+	 * @param unknown $where  array('a>b', 'c=e', 'd<f')
+	 * @param unknown $order  array('field1 asc', 'field2 desc')
+	 * @param unknown $limit  array('0', '100')
+	 * @return multitype:|Ambigous <multitype:, multitype:unknown >
+	 */
+	public function getData($table, $all=false, $select=array(), $where=array(), $order=array(), $limit=array()){
+		$ret = array();
+		if(empty($table)){
+			return $ret;
+		}
+		$selectWord = $select ? implode(',', $select) : '*';
+		$whereWord = $where ? " WHERE ". implode(' AND ', $where) : '';
+		$orderWord = $order ? " ORDER BY ". implode(',', $order) : '';
+		$limitWord = $limit ? " LIMIT ". implode(',', $limit) : '';
+		
+		$sql = "SELECT  {$selectWord} FROM {$table}  {$whereWord} {$orderWord} {$limitWord} ";
+		if($all){
+			return $this->getAll($sql, MYSQL_ASSOC);
+		}else{
+			return $this->getOne($sql, MYSQL_ASSOC);
+		}
+	}
+	
 }	// END CLASS

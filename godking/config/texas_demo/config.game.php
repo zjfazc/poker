@@ -23,11 +23,14 @@
  $gConfig['dbBk'] =array('127.0.0.1:3306','root', '', 'texas_bk');	// 配置数据库
 
  /************************   Redis配置    ************************/
+ $gConfig['redisMain'] = array('127.0.0.1', '6379');	// 主Redis
  $gConfig['redisMinfo'] = array('127.0.0.1', '6379');	// 用户Redis
  
  
  /************************   地址配置    ************************/
  $gConfig['webUrl'] = HTTP. '127.0.0.1:3360';
  $gConfig['cdnUrl'] = HTTP . '127.0.0.1:3360/cdn/texas/';
+ $gConfig['feedbackUrl'] =  $gConfig['webUrl'] . '/api/feedback.php';
+ $gConfig['gatewayUrl'] =  $gConfig['webUrl'] . '/api/gateway.php';
  
  return $gConfig;

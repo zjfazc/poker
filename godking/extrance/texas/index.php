@@ -15,15 +15,28 @@ define('IN_GAME', 'TRUE');
 
 require_once 'common.php';
 
+////////////////  判断用户登录方式，查看用户是否存在   ///////////////////
+if(1 == LOGINID){	// 游客登录
+	$mid = Model_Member::Single()->sitemidToMid(LOGINID, $sitemid);
+}
 
-$ret = Model_Cache::redisMinfo(0)->get('b');
-$table = Model_Table::mclient();
-// $query = "INSERT INTO {$table} SET client='aa'";
-// $flag = Model_Db::dbMain()->query($query);
-// $flag2 = Model_Db::dbMain()->insertData($table, array('client'=>'bb'), true);
-$flag3 = Model_Db::dbMain()->updateData($table, array('client'=>'update to new'), array('mid>1'));
-$dump = compact('ret', 'table', 'quert', 'flag', 'flag3');
-Common_Log::dump($dump);
+
+////////////////  若用户不存在，创建新用户   ///////////////////
+
+
+$code = Common_Errorcode::SUCCEED;
+$info = array(
+		'name' => 'ken',
+		'gender' => 1,
+		'sitemid' => date('YmdHis'),
+);
+$flag = Model_Member::Single()->playRegister($info);
+$user  = Model_Member::Single()->getPlayerByMid($flag['mid']);
+
+Common_Log::dump($flag);
+Common_Log::dump($user);
+
+// Common_Function::single()->sendOut($code, $data);
 
 
 

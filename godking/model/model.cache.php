@@ -22,16 +22,30 @@
  	static public $_gCache = array();
  	
  	/**
- 	 * 
+ 	 * 主redis
+ 	 * @return Lib_Redis
+ 	 */
+ 	static public function redisMain(){
+ 		$name = __FUNCTION__;
+ 		if(!isset(self::$_gCache[$name]) ){
+ 			self::$_gCache[$name] = new Lib_Redis(Common_Gobal::$_gGameConfig[$name]);
+ 		}
+ 		return self::$_gCache[$name];
+ 	}
+ 	
+ 	/**
+ 	 * 用户资料redis
  	 * @param unknown $mid
  	 * @return Lib_Redis
  	 */
  	static public function redisMinfo($mid){
  		$name = __FUNCTION__;
- 		if(!isset(self::$_gCache[$name]) || !is_object(self::$_gCache[$name])){
+ 		if(!isset(self::$_gCache[$name]) ){
  			self::$_gCache[$name] = new Lib_Redis(Common_Gobal::$_gGameConfig['redisMinfo']);
  		}
  		return self::$_gCache[$name];
  	}
+ 	
+ 	
  	
  }

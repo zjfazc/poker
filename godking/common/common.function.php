@@ -83,7 +83,7 @@ class Common_Function {
 	 * @param unknown $data
 	 */
 	public  function sendOut($errorCode, $data){
-		$etime = oo::functions()->time( true);
+		$etime = microtime(true);
 		$aRet = array();
 		$aRet['code'] = $errorCode[0];
 		$aRet['codemsg'] = $errorCode[1];

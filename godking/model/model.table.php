@@ -31,19 +31,53 @@
  		return self::$_instance[$class];
  	}
  	
- 	static public function mclient(){
- 		return "texas_member.mclient";
+ 	/**
+ 	 * 用户注册表
+ 	 * @return string
+ 	 */
+ 	static public function mregister(){
+ 		return "texas_member.mregister";
  	}
  	/**
- 	 * 用户信息表
+ 	 * 	用户客户端资料表
+ 	 * @param unknown $mid
+ 	 * @return string
+ 	 */
+ 	static public function mclient($mid){
+ 		$idx = $mid % 10;
+ 		$idx = "";
+ 		return "texas_member.mclient{$idx}";
+ 	}
+ 	/**
+ 	 * 用户基础资料表
  	 * @param unknown $mid
  	 * @return string
  	 */
  	static public function minfo($mid){
  		$idx = $mid % 10;
- 		return "texas_member.minfo{$mid}";
+ 		$idx = "";
+ 		return "texas_member.minfo{$idx}";
  	}
- 	
+ 	/**
+ 	 * 用户资产表
+ 	 * @param unknown $mid
+ 	 * @return string
+ 	 */
+ 	static public function masset($mid){
+ 		$idx = $mid % 10;
+ 		$idx = "";
+ 		return "texas_member.masset{$idx}";
+ 	}
+ 	/**
+ 	 * 
+ 	 * @param unknown $mid
+ 	 * @return string
+ 	 */
+ 	static public function mplaytexas($mid){
+ 		$idx = $mid % 10;
+ 		$idx = "";
+ 		return "texas_member.mplaytexas{$idx}";
+ 	}
  	
  	
  	

@@ -13,7 +13,7 @@
  */
  defined( 'IN_GAME') or die( 'Comes Error!');
  
- class Model_Db{
+ class Model_Db {
  	static public  $_gDb = array();
  	
  	/**
@@ -27,4 +27,6 @@
  		}
  		return self::$_gDb[$name];
  	}
+ 	
+ 	
  }

@@ -19,9 +19,9 @@
  include_once '../init.php';
  
 $smtCfg = array(
-		'gResource' =>  'resource' .DS,
+		'gResource' =>  'res' .DS,
 );
 Common_Log::dump($smtCfg);
 Lib_Smarty::gadminSmarty()->assign($smtCfg);
-Lib_Smarty::gadminSmarty()->display('cm_header.html');
+Lib_Smarty::gadminSmarty()->display('demo.html');
  

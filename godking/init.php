@@ -59,10 +59,9 @@ define('LOGINID', $gLoginid);
 /////////////////////// 继续加载配置  //////////////////////////////
 Common_Gobal::initGameConfig();	// 加载游戏对应配置
 Common_Gobal::header();
-Common_Gobal::nocache();
+// Common_Gobal::nocache();
 
 Common_Function::single()->magic_quote($_GET);
 Common_Function::single()->magic_quote($_POST);
 Common_Function::single()->magic_quote($_REQUEST);
 
-Common_Log::dump(Common_Errorcode::SUCCEED);

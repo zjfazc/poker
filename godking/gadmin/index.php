@@ -11,17 +11,11 @@
  * @date: 2016年6月4日
  * @version: v1.0.0
  */
- define( 'IN_GAME' , true);
+define( 'IN_GAME' , true);
+$GMName = '管理后台首页';
+include_once 'ginit.php';
  
- $_REQUEST['gid'] = 1;
- $_REQUEST['lid'] = 1;
- $_REQUEST['demo'] = 'greetisgood';
- include_once '../init.php';
  
-$smtCfg = array(
-		'gResource' =>  'res' .DS,
-);
-Common_Log::dump($smtCfg);
-Lib_Smarty::gadminSmarty()->assign($smtCfg);
-Lib_Smarty::gadminSmarty()->display('demo.html');
+
+
  

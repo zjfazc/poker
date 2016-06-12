@@ -15,19 +15,20 @@
  class Model_Member{
  	private $_mcacheOuttime = 2592000;	// 用户表缓存时间30天
  	
- 	static private $gObj = array();
- 	/**
- 	 * 单例
- 	 * @return Model_Member
- 	*/
- 	static public function Single(){
- 		$name = __FUNCTION__;
- 		if(!isset(self::$gObj[$name])){
- 			$class = __CLASS__;
- 			self::$gObj[$name] = new $class();
- 		}
- 		return self::$gObj[$name];
- 	}
+ 	private static $gObj = array ();
+	/**
+	 * 单例
+	 * 
+	 * @return Model_Member
+	 */
+	static public function Single() {
+		$name = __FUNCTION__;
+		if (! isset ( self::$gObj [$name] )) {
+			$class = __CLASS__;
+			self::$gObj [$name] = new $class ();
+		}
+		return self::$gObj [$name];
+	}
  	
  	/**
  	 * 通过平台id查找用户mid

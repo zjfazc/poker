@@ -71,14 +71,16 @@ class Admin_Gameconfig{
 						'autoIn' => '快速开始',
 						'online' => '上线',
 				);
+				$dataList = array();
 				$assign = array(
 						'fileName' => $fieldName,
 						'dataList' => $dataList,
 				);
 				Lib_Smarty::gadminSmarty()->assign($assign);
-				Lib_Smarty::gadminSmarty()->display('cm_header.html');
+				Lib_Smarty::gadminSmarty()->display('_px_header.html');
 				Lib_Smarty::gadminSmarty()->display('gameconfig/roomlist.html');
-				Lib_Smarty::gadminSmarty()->display('cm_footer.html');
+				Lib_Smarty::gadminSmarty()->display('_px_footer.html');
+				Common_Log::dump($assign);
 				
 				break;
 				

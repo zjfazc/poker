@@ -1,59 +1,52 @@
-<!-- Content Header (Page header) -->
-<section class="content-header">
-	<h1>
-		场次配置 <small>列表</small>
-	</h1>
-	<ol class="breadcrumb">
-		<li><a href="#"><i class="fa fa-dashboard"></i> 游戏配置</a></li>
-		<li><a href="#">房间配置</a></li>
-		<li class="active">场次配置</li>
-	</ol>
-</section>
+<ul class="breadcrumb breadcrumb-page">
+	<div class="breadcrumb-label text-light-gray">You are here:</div>
+	<li><a href="#">Home</a></li>
+	<li class="active"><a href="#">Dashboard</a></li>
+</ul>
 
-<section class="content">
 <div class="row">
-	<div class="col-xs-12">
-		<div class="box">
-			<div class="box-header">
-				<h3 class="box-title">Data Table With Full Features</h3>
-			</div>
-			<!-- /.box-header -->
-			<div class="box-body">
-				<table id="tableList" class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<*foreach from=$fileName key="field" item="name"*>
-							<th><*$name*></th>
-							<*/foreach*>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Trident</td>
-							<td>Internet Explorer 4.0</td>
-							<td>Win 95+</td>
-							<td>4</td>
-							<td>X</td>
-						</tr>
-						
-					</tbody>
-					<tfoot>
-						<tr>
-							<*foreach from=$fileName key="field" item="name"*>
-							<th><*$name*></th>
-							<*/foreach*>
-						</tr>
-					</tfoot>
-				</table>
-			</div>
-			<!-- /.box-body -->
+	<div class="col-sm-12">
+		<!-- Javascript -->
+		<script>
+			init.push(function() {
+				$('#jq-datatables-example').dataTable({
+					'iDisplayLength' : 50,
+				});
+				$('#jq-datatables-example_wrapper .table-caption').text(
+						'场次配置');
+				$('#jq-datatables-example_wrapper .dataTables_filter input')
+						.attr('placeholder', 'Search...');
+			});
+		</script>
+		<!-- / Javascript -->
+		<div class="table-primary">
+			<table cellpadding="0" cellspacing="0" border="0"
+				class="table table-striped table-bordered"
+				id="jq-datatables-example">
+				<thead>
+					<tr>
+						<*foreach from=$fileName key="field" item="name"*>
+	                    <th><*$name*></th>
+	                    <*/foreach*>
+	                    <th>操作</th>
+                    </tr>
+				</thead>
+				<tbody>
+					<tr class=" ">
+						<*foreach from=$fileName key="field" item="name"*>
+						<td><*$name*></td>
+						<*/foreach*>
+						<td>Internet Explorer 4.0</td>
+					</tr>
+					<!-- <tr class="even ">
+						<td>Trident</td>
+						<td>Internet Explorer 5.0</td>
+						<td>Win 95+</td>
+						<td class="center">5</td>
+						<td class="center">C</td>
+					</tr> -->
+				</tbody>
+			</table>
 		</div>
-		<!-- /.box -->
 	</div>
 </div>
-</section>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tableList').DataTable();
-	}); 
-</script>

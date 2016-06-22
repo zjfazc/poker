@@ -82,7 +82,7 @@ class Common_Function {
 	 * @param unknown $errorCode
 	 * @param unknown $data
 	 */
-	public  function sendOut($errorCode, $data){
+	public  function sendOut($errorCode, $data=array()){
 		$etime = microtime(true);
 		$aRet = array();
 		$aRet['code'] = $errorCode[0];

@@ -33,4 +33,13 @@
  	static public function sitemidToMid($lid, $sitemid){
  		return "sitemidToMid.{$lid}.{$sitemid}";
  	}
+ 	
+ 	/**
+ 	 * 用户mtkey验证码
+ 	 * @param unknown $mid
+ 	 * @return string
+ 	 */
+ 	static public function monline($mid){
+ 		return "monline.{$mid}";
+ 	}
  }

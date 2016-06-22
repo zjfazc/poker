@@ -1,0 +1,59 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<h1>
+		场次配置 <small>列表</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-dashboard"></i> 游戏配置</a></li>
+		<li><a href="#">房间配置</a></li>
+		<li class="active">场次配置</li>
+	</ol>
+</section>
+
+<section class="content">
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<h3 class="box-title">Data Table With Full Features</h3>
+			</div>
+			<!-- /.box-header -->
+			<div class="box-body">
+				<table id="tableList" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<*foreach from=$fileName key="field" item="name"*>
+							<th><*$name*></th>
+							<*/foreach*>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Trident</td>
+							<td>Internet Explorer 4.0</td>
+							<td>Win 95+</td>
+							<td>4</td>
+							<td>X</td>
+						</tr>
+						
+					</tbody>
+					<tfoot>
+						<tr>
+							<*foreach from=$fileName key="field" item="name"*>
+							<th><*$name*></th>
+							<*/foreach*>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<!-- /.box-body -->
+		</div>
+		<!-- /.box -->
+	</div>
+</div>
+</section>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#tableList').DataTable();
+	}); 
+</script>

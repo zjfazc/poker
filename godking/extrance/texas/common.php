@@ -17,3 +17,7 @@ require_once dirname(__FILE__) . '/../../init.php';
 
 
 /********************** 验证接口 ***********************/
+if(false == Model_Verify::Single()->checkSign($_REQUEST['sign'])){
+	$errorCode = Common_Errorcode::ERROR_SIGN_VERIFY;
+	Common_Function::single()->sendOut($errorCode, array());
+}

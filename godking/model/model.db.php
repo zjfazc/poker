@@ -28,5 +28,29 @@
  		return self::$_gDb[$name];
  	}
  	
+ 	/**
+ 	 *
+ 	 * @return Lib_Mysql
+ 	 */
+ 	static public function dbLog(){
+ 		$name = __FUNCTION__;
+ 		if(!isset(self::$_gDb[$name]) || !is_object(self::$_gDb[$name])){
+ 			self::$_gDb[$name] = new Lib_Mysql(Common_Gobal::$_gGameConfig[$name]);
+ 		}
+ 		return self::$_gDb[$name];
+ 	}
+ 	
+ 	/**
+ 	 *
+ 	 * @return Lib_Mysql
+ 	 */
+ 	static public function dbBk(){
+ 		$name = __FUNCTION__;
+ 		if(!isset(self::$_gDb[$name]) || !is_object(self::$_gDb[$name])){
+ 			self::$_gDb[$name] = new Lib_Mysql(Common_Gobal::$_gGameConfig[$name]);
+ 		}
+ 		return self::$_gDb[$name];
+ 	}
+ 	
  	
  }

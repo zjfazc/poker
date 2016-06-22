@@ -31,7 +31,19 @@
  	 * 验证登录
  	 * @return boolean
  	 */
- 	public function checkSign(){
- 		return true;
+ 	public function checkSign($sign){
+ 		if(empty($sign)){
+ 			return false;
+ 		}
+ 		$fields = array(
+ 				'gid' => (int)$_REQUEST['gid'],
+ 				'lid' => (int)$_REQUEST['lid'],
+ 				'cid' => (int)$_REQUEST['cid'],
+ 				'uuid' => (string)$_REQUEST['uuid'],
+ 		);
+ 		if($sign == md5(implode('&', $fields))){
+ 			return true;
+ 		}
+ 		return false;
  	}
  }

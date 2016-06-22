@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.19, created on 2016-06-12 23:16:23
+<?php /* Smarty version 2.6.19, created on 2016-06-18 14:49:02
          compiled from demo.html */ ?>
 
 <!-- Small boxes (Stat box) -->

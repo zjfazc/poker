@@ -36,8 +36,12 @@ class Admin_Dashboard{
 	 */
 	public function actionIndex(){
 		
-		Lib_Smarty::gadminSmarty()->display('cm_header.html');
+		Lib_Smarty::gadminSmarty()->display('_px_header.html');
 		Lib_Smarty::gadminSmarty()->display('demo.html');
-		Lib_Smarty::gadminSmarty()->display('cm_footer.html');
+		Lib_Smarty::gadminSmarty()->display('_px_footer.html');
+		
+// 		Lib_Smarty::gadminSmarty()->display('cm_header.html');
+// 		Lib_Smarty::gadminSmarty()->display('demo.html');
+// 		Lib_Smarty::gadminSmarty()->display('cm_footer.html');
 	}
 }

@@ -19,13 +19,13 @@ class Admin_Common{
 	/**
 	 * 单例
 	 *
-	 * @return Admin_Common
+	 * @return Admin_Common	
 	*/
 	static public function Single() {
 		$name = __FUNCTION__;
 		if (! isset ( self::$gObj [$name] )) {
 			$class = __CLASS__;
-			self::$gObj [$name] = new $class ();
+			self::$gObj [$name] = new $class	();
 		}
 		return self::$gObj [$name];
 	}

@@ -32,26 +32,7 @@ class Admin_Gameconfig{
 	}
 	
 	public function actionRoom(){
-// 		CREATE TABLE `room` (
-// 		`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增主键',
-// 		`serverid` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'SERVER房间等级（SERVER定义）',
-// 		`screen` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '场景ID:1-低级场;2-中级场',
-// 		`ptype` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '坐满类型：1-5人;2-7人;3-9人',
-// 		`smallBlind` BIT(1) NOT NULL DEFAULT b'0' COMMENT '小盲注',
-// 		`bigBlind` BIT(1) NOT NULL DEFAULT b'0' COMMENT '大盲注',
-// 		`minLevel` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '进入等级下限',
-// 		`maxLevel` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '进入等级上限',
-// 		`minMoney` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '最小携带',
-// 		`maxMoney` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '最大携带:0-无限制',
-// 		`buyIn` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '默认带入',
-// 		`autoIn` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '快速进入标准:低于该值进入该房',
-// 		`free` INT(11) NOT NULL DEFAULT '0' COMMENT '台费',
-// 		`readytime` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '开局准备时间',
-// 		`acttime` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '玩牌操作时间',
-// 		`judgetime` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '结算时间',
-// 		`wexp` SMALLINT(6) NOT NULL DEFAULT '0' COMMENT '赢牌基本经验',
-// 		`wexpBase` SMALLINT(6) NOT NULL DEFAULT '0' COMMENT '赢牌经验：人数基准',
-// 		`lexp` SMALLINT(6) NOT NULL DEFAULT '0' COMMENT '输牌基本经验',
+
 		
 		$act = isset($_REQUEST['gAct']) ? trim($_REQUEST['gAct']) : 'getlist';
 		switch($act){
@@ -100,7 +81,57 @@ class Admin_Gameconfig{
 						'autoIn' => '快速开始',
 						'online' => '上线',
 				);
-				Lib_Smarty::gadminSmarty()->display('gameconfig/roomlist.html');
+				$cmConfig = Admin_Common::Single()->getConfig('common');
+				$roomConfig = $cmConfig['roomConfig'];
+				$assign = array(
+						'fileName' => $fieldName,
+						'roomConfig' => $roomConfig,
+				);
+				Lib_Smarty::gadminSmarty()->assign($assign);
+				Lib_Smarty::gadminSmarty()->display('gameconfig/addroom.html');
+				break;
+				
+			case 'saveAddItem':
+				$modleData = $_REQUEST['modleData'];
+				$table = Model_Table::bkRoom();
+				$ckWhere = array("serverid = '{$modleData['serverid']}'");
+				if(empty($modleData['serverid'])){
+					$ret = array('code'=>'error', 'msg'=>"serverid: {$modleData['serverid']} 不能为空");
+					echo json_encode($ret);
+					die();
+				}
+				
+				$check = Model_Db::dbBk()->getData($table, false, array('*'), $ckWhere);
+				if($check['serverid']){
+					$ret = array('code'=>'error', 'msg'=>"serverid: {$modleData['serverid']} 已存在");
+					echo json_encode($ret);
+					die();
+				}
+				
+				$numData = array('serverid', 'screen', 'ptype', 'smallBlind', 'bigBlind', 'minLevel', 
+						'maxLevel', 'minMoney', 'maxMoney', 'buyIn', 'autoIn', 'online', 'free',
+						'readytime', 'acttime', 'judgetime', 'wexp', 'wexpBase', 'lexp', 'judgetime'
+				);
+				$strData = array('roomName');
+				$insertData = array();
+				foreach($modleData as $key=>$val){
+					$insertData[$key] = (float)$val;
+				}
+				
+				$flag = Model_Db::dbBk()->insertData($table, $insertData);
+				if($flag){
+					$ret = array(
+							'code' => 'suc',
+							'msg' => "serverid: {$modleData['serverid']} 添加成功!"
+					);
+				}else{
+					$ret = array(
+							'code' => 'error',
+							'msg' => "serverid: {$modleData['serverid']} 添加失败!"
+					);
+				}
+				echo json_encode($ret);
+				die();
 				break;
 		}
 		

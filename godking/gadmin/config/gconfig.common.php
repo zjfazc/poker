@@ -13,3 +13,28 @@
  */
  
 defined( 'IN_GAME') or die( 'Comes Error!');
+
+$gdCommon = array();
+
+
+////////  房间配置-场景ID   //////// 
+$gdCommon['roomConfig']['screen'] = array(
+		'1' => '低级场',
+		'2' => '中级场',
+		'3' => '高级场',
+);
+
+////////  房间配置-场景ID   //////// 
+$gdCommon['roomConfig']['ptype'] = array(
+		'1' => '5人',
+		'2' => '7人',
+		'3' => '9人',
+);
+
+////////  房间配置-场景ID   ////////
+$gdCommon['roomConfig']['online'] = array(
+		'1' => '上线',
+		'0' => '下线',
+);
+
+return $gdCommon;

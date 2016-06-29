@@ -91,7 +91,13 @@
  	
  	
  	/***********************************  BkTable  **************************************/
- 	
+ 	/**
+ 	 * 配置备份表
+ 	 * @return string
+ 	 */
+ 	static public function bkRoom(){
+ 		return "texas_bk.room";
+ 	}
  	
  	
  	

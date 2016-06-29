@@ -63,4 +63,9 @@ Common_Gobal::header ();
 Common_Function::single ()->magic_quote ( $_GET );
 Common_Function::single ()->magic_quote ( $_POST );
 Common_Function::single ()->magic_quote ( $_REQUEST );
+if(SERVER_ONLINE){
+	error_reporting(0);
+}else{
+	error_reporting(2048);
+}
 

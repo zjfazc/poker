@@ -30,9 +30,10 @@
  
  
  /************************   地址配置    ************************/
- $gConfig['webUrl'] = HTTP. '127.0.0.1:3360';
- $gConfig['cdnUrl'] = HTTP . '127.0.0.1:3360/cdn/texas/';
+ $gConfig['webUrl'] = HTTP. 'localhost:3360';
+ $gConfig['cdnUrl'] = HTTP . 'localhost:3360/cdn/texas/';
  $gConfig['feedbackUrl'] =  $gConfig['webUrl'] . '/api/feedback.php';
  $gConfig['gatewayUrl'] =  $gConfig['webUrl'] . '/api/gateway.php';
+ $gConfig['gadminUrl'] =  $gConfig['webUrl'] . '/gadmin/index.php';
  
  return $gConfig;

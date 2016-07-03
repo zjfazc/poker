@@ -27,7 +27,7 @@
  $gConfig['redisMain'] = array('127.0.0.1', '6379');	// 主Redis
  $gConfig['redisMinfo'] = array('127.0.0.1', '6379');	// 用户Redis
  $gConfig['redisMonline'] = array('127.0.0.1', '6379');	// 在线Redis
- 
+ $gConfig['redisSystem'] = array('127.0.0.1', '6379');	// 系统Redis
  
  /************************   地址配置    ************************/
  $gConfig['webUrl'] = HTTP. 'localhost:3360';

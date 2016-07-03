@@ -1,0 +1,205 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">×</button>
+		<h4 class="modal-title" id="myModalLabel">添加房间配置</h4>
+	</div>
+	<div class="modal-body">
+		<table  class="table table-striped table-bordered ">
+			<tr>
+				<th>#属性</th>
+				<th>#值</th>
+				<th>#说明</th>
+			</tr>
+			
+			<tr>
+				<td><h5>SERVER房间等级</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="serverid" value="<*$data.serverid*>" />	
+				</td>
+				<td> <strong> - </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>房间名字</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="roomName" value="<* $data.roomName *>" />	
+				</td>
+				<td> <strong> - </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>场景ID</h5></td>
+				<td>
+					<select class="modleData form-control input-sm" name="screen" >
+					<*foreach from=$roomConfig.screen key="key" item="val"*>
+					  <option value="<*$key*>" <*if $key==$data.screen*>selected="selected"<*/if*> ><*$key*> . <*$val*></option>
+					  <*/foreach*>
+					</select>
+				</td>
+				<td> <strong> 场景ID:1-低级场;2-中级场 </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>坐满类型</h5></td>
+				<td>
+					<select class="modleData form-control input-sm" name="ptype" >
+					<*foreach from=$roomConfig.ptype key="key" item="val"*>
+					  <option value="<*$key*>" <*if $key==$data.ptype*>selected="selected"<*/if*> ><*$key*> . <*$val*></option>
+					  <*/foreach*>
+					</select>
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>小盲注</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="smallBlind" value="<* $data.smallBlind*>"  />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>大盲注</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="bigBlind" value="<* $data.bigBlind*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>进入等级下限</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="minLevel" value="<* $data.minLevel*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>进入等级上限</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="maxLevel" value="<* $data.maxLevel*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>最小携带</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="minMoney" value="<* $data.minMoney*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>最大携带</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="maxMoney" value="<* $data.maxMoney*>" />	
+				</td>
+				<td> <strong>最大携带:0-无限制 </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>默认带入</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="buyIn" value="<* $data.buyIn*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>快速进入标准</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="autoIn" value="<* $data.autoIn*>" />	
+				</td>
+				<td> <strong>快速进入标准:低于该值进入该房 </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>台费</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="free" value="<* $data.free*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>开局准备时间</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="readytime" value="<* $data.readytime*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>玩牌操作时间</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="acttime" value="<* $data.acttime*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>结算时间</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="judgetime" value="<* $data.judgetime*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>赢牌基本经验</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="wexp" value="<* $data.wexp*>" />	
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>赢牌经验</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="wexpBase" value="<* $data.wexpBase*>" />	
+				</td>
+				<td> <strong> 赢牌经验：人数基准 </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>输牌基本经验</h5></td>
+				<td>
+					<input class="modleData form-control input-sm" type="text" name="lexp" value="<* $data.lexp*>" />	
+				</td>
+				<td> <strong>  </strong>  </td>
+			</tr>
+			
+			<tr>
+				<td><h5>是否上线</h5></td>
+				<td>
+					<select class="modleData form-control input-sm" name="online" >
+					<*foreach from=$roomConfig.online key="key" item="val"*>
+					  <option value="<*$key*>" <*if $key==$data.online*>selected="selected"<*/if*> ><*$key*> . <*$val*></option>
+					  <*/foreach*>
+					</select>
+				</td>
+				<td> <strong> </strong>  </td>
+			</tr>
+
+		</table >
+	</div>
+	<!-- / .modal-body -->
+	<div class="modal-footer">
+		<input class="modleData form-control input-sm" type="hidden" name="id" value="<* $data.id*>" />	
+		<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		<button type="button" class="btn btn-primary" id="saveAction">保存</button>
+	</div>
+</div>
+<!-- / .modal-content -->
+
+<script type="text/javascript">
+
+init.push(function() {
+	
+});
+</script>
+
+		

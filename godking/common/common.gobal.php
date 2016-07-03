@@ -40,8 +40,16 @@
  		return self::$_gGameConfig;
  	}
  	
+ 	/**
+ 	 * 加载游戏配置数据函数
+ 	 * @param unknown $name
+ 	 * @return multitype:
+ 	 */
  	static public function dataFile($name){
- 		
+ 		if(empty(self::$_gDataFile[$name])){
+ 			self::$_gDataFile[$name] = require_once PATH_CONFIG ."data". DS. "data.{$name}.php";
+ 		}
+ 		return empty(self::$_gDataFile[$name])  ? array() : self::$_gDataFile[$name];
  	}
  	
  	/**

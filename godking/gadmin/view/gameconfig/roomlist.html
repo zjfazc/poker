@@ -40,6 +40,11 @@
 </div>
 <!-- / .page-header -->
 
+<ul class="breadcrumb breadcrumb-page">
+	<div class="breadcrumb-label text-light-gray">配置生成:</div>
+	<li><a href="#" id="mkConfig"><kbd>生成配置</kbd></a></li>
+</ul>
+
 <div class="row">
 	<div class="col-sm-12">
 
@@ -55,11 +60,18 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class=" ">
-						<*foreach from=$fileName key="field" item="name"*>
-						<td><*$name*></td> <*/foreach*>
-						<td>Internet Explorer 4.0</td>
+					<*foreach from=$dataList item="log"*>
+					<tr class=" " id="data-<*$log.id*>">
+						<*foreach from=$fileName key="key" item="name"*>
+						<td><*$log[$key]*></td> <*/foreach*>
+						<td>
+							<button type="button" class="btn btn-warning modleEdit"
+								data-id="<*$log.id*>">修改</button>
+							<button type="button" class="btn btn-danger modleDelete"
+								data-id="<*$log.id*>">删除</button>
+						</td>
 					</tr>
+					<*/foreach*>
 					<!-- <tr class="even ">
 						<td>Trident</td>
 						<td>Internet Explorer 5.0</td>
@@ -95,6 +107,8 @@
 		$('#jq-datatables-example_wrapper .dataTables_filter input').attr(
 				'placeholder', 'Search...');
 
+		///////  提示框   ///////
+
 		///////////////    model内容加载    ///////////////
 		$("#addItem").click(function() {
 			//console.log('gadminUrl', gadminUrl);
@@ -110,32 +124,146 @@
 					$("#myModal  .modal-dialog").html(r);
 				}
 			});
+		});
 
-			$(document).one("click", "#addAction", function() {
-				var modleData = {};
-				$(".modleData").each(function() {
-					modleData[$(this).attr('name') ] = $(this).val();
-				});
-				console.log('modleData: ', modleData);
-				$.ajax({
-					'url' : gadminUrl,
-					'type' : 'post',
-					'cache' : false,
-					'data' : {
-						'gAct' : 'saveAddItem',
-						'modleData' : modleData,
-					},
-					'dataType' : 'html',
-					'success' : function(r) {
-						console.log('http return  ： ', r);
-						
-											
+		//////  删除  //////
+		$(".modleDelete").on('click', function() {
+			var id = $(this).data('id');
+			bootbox.confirm({
+				message : "确定是否删除ID : " + id + " ??",
+				buttons : {
+					'confirm' : {
+						'className' : 'btn-danger',
+						'label' : '删除'
 					}
-				});
-				
-			});
 
-		})
-	});
+				},
+				callback : function(result) {
+					if (true == result) {
+						$.ajax({
+							'url' : gadminUrl,
+							'type' : 'post',
+							'data' : {
+								'gAct' : 'deleteItem',
+								'id' : id,
+							},
+							'dataType' : 'json',
+							'success' : function(r) {
+								console.log('http return  ： ', r);
+								comAlert(r);
+								$('#data-' + id).remove();
+							}
+						});
+					}
+				},
+			});
+		});
+		///////  编辑  //////
+		$('.modleEdit').on('click', function() {
+			var id = $(this).data('id');
+			console.log('id: ', id);
+			$.ajax({
+				'url' : gadminUrl,
+				'type' : 'post',
+				'data' : {
+					'gAct' : 'editItem',
+					'id' : id,
+				},
+				'dataType' : 'html',
+				'success' : function(r) {
+					// console.log('http return  ： ', r);
+					$("#myModal  .modal-dialog").html(r);
+					$("#myModal").modal('show');
+				}
+			});
+		});
+
+		////  保存修改  ////
+		$(document).one(
+				"click",
+				"#saveAction",
+				function() {
+					var modleData = {};
+					$(".modleData").each(function() {
+						modleData[$(this).attr('name')] = $(this).val();
+					});
+					console.log('modleData: ', modleData);
+					$.ajax({
+						'url' : gadminUrl,
+						'type' : 'post',
+						'cache' : false,
+						'data' : {
+							'gAct' : 'saveEditItem',
+							'modleData' : modleData,
+						},
+						'dataType' : 'json',
+						'success' : function(r) {
+							console.log('http return  ： ', r);
+							$("#myModal").modal('hide');
+							comAlert(r);
+							$('#data-' + modleData.id).addClass('success')
+									.removeClass('warning');
+						}
+					});
+				});
+
+		//////  保存添加数据  //////
+		$(document).on("click", "#addAction", function() {
+			//$("#addAction").on('click', function(){
+			var modleData = {};
+			$(".modleData").each(function() {
+				modleData[$(this).attr('name')] = $(this).val();
+			});
+			console.log('modleData: ', modleData);
+			$.ajax({
+				'url' : gadminUrl,
+				'type' : 'post',
+				'cache' : false,
+				'data' : {
+					'gAct' : 'saveAddItem',
+					'modleData' : modleData,
+				},
+				'dataType' : 'json',
+				'success' : function(r) {
+					console.log('http return  ： ', r);
+					$("#myModal").modal('hide');
+					comAlert(r);
+				}
+			});
+		}); //添加数据
+
+		/////////  生成配置  ////////
+		$(document).on("click", "#mkConfig", function() {
+			var url = gadminUrl + 'MkConfig';
+			bootbox.confirm({
+				message : "确定生成配置？？",
+				buttons : {
+					'confirm' : {
+						'className' : 'btn-warning',
+						'label' : '生成配置'
+					}
+
+				},
+				callback : function(result) {
+					if (true == result) {
+						$.ajax({
+							'url' : url,
+							'type' : 'post',
+							'data' : {
+							},
+							'dataType' : 'html',
+							'success' : function(r) {
+								console.log('http return  ： ', r);
+								bootbox.alert({
+									message: r,
+								});
+							}
+						});
+					}
+				},
+			});
+		});
+			
+	}); 	// end init
 </script>
 <!-- / Javascript -->

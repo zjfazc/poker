@@ -91,4 +91,39 @@ class Common_Function {
 		$aRet['data'] = $data;
 		echo json_encode( $aRet);
 	}
+	
+	/**
+	 * 配置数据输出
+	 * @param unknown $data
+	 * @param unknown $filepath
+	 * @param string $echo
+	 */
+	public function mkConfigOutput($data, $filepath, $echo=true){
+		$cnt = @file_put_contents($filepath, $data);
+		if($echo ){
+			$txt = $cnt ? "成功" : "失败";
+			echo "<br>{$txt}  output file : {$filepath}<br>";
+		}
+	}
+	/**
+	 *  设置在线版本配置
+	 * @param unknown $name
+	 * @param unknown $version
+	 */
+	public function setOnlineVersionControl($name, $version){
+		$versions = Common_Gobal::dataFile('versionControl');
+		$versions[$name] = $version;
+		
+		$outphp = "<?php \n";
+		$outphp .= "// 在线配置版本控制 \n";
+		$outphp .= "\$versionControl = array(); \n";
+		
+		foreach($versions as $key=>$val){
+			$outphp .= "\$versionControl['{$key}'] = '{$val}'; \n";
+		}
+		$outphp .= "return \$versionControl; \n";
+		
+		$filepath = PATH_CONFIG . 'data' .DS . "data.versionControl.php";
+		$this->mkConfigOutput($outphp, $filepath);
+	}
 }

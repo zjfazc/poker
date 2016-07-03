@@ -59,5 +59,18 @@
  		return self::$_gCache[$name];
  	}
  	
+ 	/**
+ 	 * 系统redis
+ 	 * @param unknown $mid
+ 	 * @return Lib_Redis
+ 	 */
+ 	static public function redisSystem(){
+ 		$name = __FUNCTION__;
+ 		if(!isset(self::$_gCache[$name]) ){
+ 			self::$_gCache[$name] = new Lib_Redis(Common_Gobal::$_gGameConfig[$name]);
+ 		}
+ 		return self::$_gCache[$name];
+ 	}
+ 	
  	
  }

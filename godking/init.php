@@ -47,10 +47,13 @@ if (empty ( $gLoginid ) && ! array_key_exists ( $gLoginid, Common_Gobal::$_gComm
 
 // ///////////////////// 继续 定义宏 //////////////////////////////
 if (isset ( $_REQUEST ['demo'] ) && 'greetisgood' == $_REQUEST ['demo']) {
-	define ( 'PATH_CONFIG', PATH_ROOT . 'config' . DS . Common_Gobal::$_gCommonConfig ['gids'] [$gGameid] [0] . '_demo' . DS );
+	$gameName = Common_Gobal::$_gCommonConfig ['gids'] [$gGameid] [0] . '_demo' ;
 } else {
-	define ( 'PATH_CONFIG', PATH_ROOT . 'config' . DS . Common_Gobal::$_gCommonConfig ['gids'] [$gGameid] [0] . DS );
+	$gameName = Common_Gobal::$_gCommonConfig ['gids'] [$gGameid] [0]  ;
 }
+define ( 'PATH_CONFIG', PATH_ROOT . 'config' . DS . $gameName . DS );
+define ( 'PATH_CDN', PATH_ROOT . 'cdn' . DS . $gameName . DS );
+
 define ( 'GAMEID', $gGameid );
 define ( 'CHANNEL', $gChannelid );
 define ( 'LOGINID', $gLoginid );

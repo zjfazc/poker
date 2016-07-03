@@ -1,0 +1,8 @@
+<?php defined( 'IN_GAME') or die( 'Comes Error!'); 
+$room = array(); 
+$room[1] = array('serverid'=>'1','roomName'=>'trrs','screen'=>'3','ptype'=>'3','smallBlind'=>'1','bigBlind'=>'1','minLevel'=>'1','maxLevel'=>'30','minMoney'=>'5000','maxMoney'=>'50000','buyIn'=>'100','autoIn'=>'10000','free'=>'100','readytime'=>'8','acttime'=>'9','judgetime'=>'10','wexp'=>'3','wexpBase'=>'1','lexp'=>'2','online'=>'1'); 
+$room[2] = array('serverid'=>'2','roomName'=>'22','screen'=>'1','ptype'=>'1','smallBlind'=>'1','bigBlind'=>'1','minLevel'=>'0','maxLevel'=>'0','minMoney'=>'0','maxMoney'=>'0','buyIn'=>'0','autoIn'=>'0','free'=>'0','readytime'=>'0','acttime'=>'0','judgetime'=>'0','wexp'=>'0','wexpBase'=>'0','lexp'=>'0','online'=>'1'); 
+$room[3] = array('serverid'=>'3','roomName'=>'333','screen'=>'1','ptype'=>'1','smallBlind'=>'1','bigBlind'=>'1','minLevel'=>'0','maxLevel'=>'0','minMoney'=>'0','maxMoney'=>'0','buyIn'=>'0','autoIn'=>'0','free'=>'0','readytime'=>'0','acttime'=>'0','judgetime'=>'0','wexp'=>'0','wexpBase'=>'0','lexp'=>'0','online'=>'1'); 
+$room[4] = array('serverid'=>'4','roomName'=>'44','screen'=>'1','ptype'=>'1','smallBlind'=>'1','bigBlind'=>'1','minLevel'=>'0','maxLevel'=>'0','minMoney'=>'0','maxMoney'=>'0','buyIn'=>'0','autoIn'=>'0','free'=>'0','readytime'=>'0','acttime'=>'0','judgetime'=>'0','wexp'=>'0','wexpBase'=>'0','lexp'=>'0','online'=>'1'); 
+$room[5] = array('serverid'=>'5','roomName'=>'55','screen'=>'1','ptype'=>'1','smallBlind'=>'1','bigBlind'=>'1','minLevel'=>'0','maxLevel'=>'0','minMoney'=>'0','maxMoney'=>'0','buyIn'=>'0','autoIn'=>'0','free'=>'0','readytime'=>'0','acttime'=>'0','judgetime'=>'0','wexp'=>'0','wexpBase'=>'0','lexp'=>'0','online'=>'1'); 
+return $room; 

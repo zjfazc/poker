@@ -42,4 +42,20 @@
  	static public function monline($mid){
  		return "monline.{$mid}";
  	}
+ 	
+ 	static public function memdata($mid){
+ 		return "memdata.{$mid}";
+ 	}
+ 	
+ 	
+ 	
+ 	/************************* 系统 配置key  ***************************/
+ 	/**
+ 	 * 房间配置缓存key
+ 	 * @param unknown $serverid
+ 	 * @return string
+ 	 */
+ 	static public function serRoom($serverid){
+ 		return "serRoom.{$serverid}";
+ 	}
  }

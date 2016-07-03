@@ -23,8 +23,19 @@
 <script src="assets/javascripts/pixel-admin.min.js"></script>
 
 <script type="text/javascript">
+	/////   公用growl型提示框   //////
+	function comAlert(ret){
+		//console.log('comalert ret : ', ret);
+		if('error' == ret['code']){
+			$.growl.warning({'title':ret['code'], message:ret['msg']});
+		}else if('suc' == ret['code']){
+			$.growl.notice({'title':ret['code'], message:ret['msg']});
+		}
+	}
 	init.push(function() {
 		// Javascript code here
+		
+		
 	})
 	window.PixelAdmin.start(init);
 </script>

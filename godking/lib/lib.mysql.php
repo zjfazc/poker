@@ -224,7 +224,7 @@ class Lib_Mysql {
 	 * @param unknown $limit  array('0', '100')
 	 * @return multitype:|Ambigous <multitype:, multitype:unknown >
 	 */
-	public function getData($table, $all=false, $select=array(), $where=array(), $order=array(), $limit=array()){
+	public function getData($table, $all=false, $select=array('*'), $where=array(), $order=array(), $limit=array()){
 		$ret = array();
 		if(empty($table)){
 			return $ret;
